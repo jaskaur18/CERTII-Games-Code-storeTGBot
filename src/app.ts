@@ -19,6 +19,7 @@ import bot from '@/helpers/bot'
 import configurefluent from '@/middlewares/configurefluent'
 import env from '@/helpers/env'
 import languageMenu from '@/menus/language'
+import refundRouter from '@/conversation/refund'
 import startMongo from '@/helpers/startMongo'
 
 async function runApp() {
@@ -37,12 +38,14 @@ async function runApp() {
     .use(configurefluent())
     //Sessions
     .use(session)
-    .use(addCategory) // register the router
-    .use(addItemsRouter) // register the router
     // Menus
     //Menu
     .use(confirmDepositKeyboard)
     .use(languageMenu)
+    .use(addCategory) // register the router
+    .use(addItemsRouter) // register the router
+    .use(refundRouter)
+
     // Commands
     .use(CommandsHanlder)
     //Actions (inline queries)

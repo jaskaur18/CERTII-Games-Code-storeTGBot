@@ -12,7 +12,6 @@ export const confirmDepositKeyboard = new Menu<Context>(
   'confirmDepositMenu'
 ).text('Confirm Deposit', async (ctx: Context) => {
   const deposit = await checkBTCPayment(ctx.dbuser.walletAddress)
-  console.log(deposit)
 
   if (!deposit) {
     return ctx.reply('No deposit found')

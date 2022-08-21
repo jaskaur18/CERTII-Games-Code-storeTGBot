@@ -1,11 +1,13 @@
 import { Router } from '@grammyjs/router'
+import { confirmDepositKeyboard } from '@/handlers/actions/deposit'
+import { getBtcRate } from '@/helpers/Wallet'
 import { getItemById } from '@/models/Items'
 import Context from '@/models/Context'
 import sendOptions from '@/helpers/sendOptions'
 
-const addItemsRouter = new Router<Context>((ctx) => ctx.session.route)
+const refundRouter = new Router<Context>((ctx) => ctx.session.route)
 
-addItemsRouter.route('refund', async (ctx: Context) => {
+refundRouter.route('refund', async (ctx: Context) => {
   if (ctx.msg?.text === '/cancel') {
     ctx.session.route = ''
     return ctx.reply(ctx.t('Cancelled'), sendOptions(ctx))
@@ -61,3 +63,38 @@ addItemsRouter.route('refund', async (ctx: Context) => {
     return ctx.reply(ctx.t('NoPhoto'), sendOptions(ctx))
   }
 })
+
+refundRouter.route('customDeposit', async (ctx: Context) => {
+  if (!ctx.msg?.text) {
+    return ctx.reply(ctx.t('InvalidAmount'), sendOptions(ctx))
+  }
+  if (ctx.msg?.text === '/cancel') {
+    ctx.session.route = ''
+    return ctx.reply(ctx.t('Cancelled'), sendOptions(ctx))
+  }
+
+  const amount = parseInt(ctx.msg?.text)
+
+  if (isNaN(amount)) {
+    return ctx.reply(ctx.t('InvalidAmount'), sendOptions(ctx))
+  }
+
+  const amountInBtc = await getBtcRate(amount)
+
+  if (!amountInBtc) return ctx.reply(ctx.t('InvalidAmount'), sendOptions(ctx))
+
+  ctx.session.route = ''
+
+  const message =
+    `You are about to deposit $${amount} to your wallet.\n\n` +
+    `Amount in BTC To Deposit: <code>${amountInBtc}</code>\n\n` +
+    `Wallet Address: <code>${ctx.dbuser.walletAddress}</code>\n\n` +
+    `After you deposit, click <b>Confirm</b> to continue.`
+
+  return ctx.reply(message, {
+    reply_markup: confirmDepositKeyboard,
+    parse_mode: 'HTML',
+  })
+})
+
+export default refundRouter
