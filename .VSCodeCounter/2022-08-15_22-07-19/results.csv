@@ -1,0 +1,43 @@
+"filename", "language", "TypeScript", "JSON with Comments", "Markdown", "YAML", "JSON", "Docker", "JavaScript", "comment", "blank", "total"
+"/Users/waheguru-ji/Projects/Nodejs Apps/Telegram Related /Tg Bots/store shopping bots/CERTII-Games-Code-storeTGBot/.eslintrc.json", "JSON with Comments", 0, 53, 0, 0, 0, 0, 0, 0, 1, 54
+"/Users/waheguru-ji/Projects/Nodejs Apps/Telegram Related /Tg Bots/store shopping bots/CERTII-Games-Code-storeTGBot/.github/FUNDING.yml", "YAML", 0, 0, 0, 1, 0, 0, 0, 0, 1, 2
+"/Users/waheguru-ji/Projects/Nodejs Apps/Telegram Related /Tg Bots/store shopping bots/CERTII-Games-Code-storeTGBot/.github/pull_request_template.md", "Markdown", 0, 0, 3, 0, 0, 0, 0, 0, 1, 4
+"/Users/waheguru-ji/Projects/Nodejs Apps/Telegram Related /Tg Bots/store shopping bots/CERTII-Games-Code-storeTGBot/.github/workflows/workflow.yml", "YAML", 0, 0, 0, 15, 0, 0, 0, 0, 3, 18
+"/Users/waheguru-ji/Projects/Nodejs Apps/Telegram Related /Tg Bots/store shopping bots/CERTII-Games-Code-storeTGBot/.prettierrc.json", "JSON", 0, 0, 0, 0, 7, 0, 0, 0, 1, 8
+"/Users/waheguru-ji/Projects/Nodejs Apps/Telegram Related /Tg Bots/store shopping bots/CERTII-Games-Code-storeTGBot/.yarn/plugins/yarn-up-all-plugin.cjs", "JavaScript", 0, 0, 0, 0, 0, 0, 1, 0, 0, 1
+"/Users/waheguru-ji/Projects/Nodejs Apps/Telegram Related /Tg Bots/store shopping bots/CERTII-Games-Code-storeTGBot/.yarn/releases/yarn-3.1.0.cjs", "JavaScript", 0, 0, 0, 0, 0, 0, 540, 186, 43, 769
+"/Users/waheguru-ji/Projects/Nodejs Apps/Telegram Related /Tg Bots/store shopping bots/CERTII-Games-Code-storeTGBot/Dockerfile", "Docker", 0, 0, 0, 0, 0, 8, 0, 0, 0, 8
+"/Users/waheguru-ji/Projects/Nodejs Apps/Telegram Related /Tg Bots/store shopping bots/CERTII-Games-Code-storeTGBot/README.md", "Markdown", 0, 0, 16, 0, 0, 0, 0, 0, 10, 26
+"/Users/waheguru-ji/Projects/Nodejs Apps/Telegram Related /Tg Bots/store shopping bots/CERTII-Games-Code-storeTGBot/package.json", "JSON", 0, 0, 0, 0, 58, 0, 0, 0, 0, 58
+"/Users/waheguru-ji/Projects/Nodejs Apps/Telegram Related /Tg Bots/store shopping bots/CERTII-Games-Code-storeTGBot/src/app.ts", "TypeScript", 40, 0, 0, 0, 0, 0, 0, 8, 5, 53
+"/Users/waheguru-ji/Projects/Nodejs Apps/Telegram Related /Tg Bots/store shopping bots/CERTII-Games-Code-storeTGBot/src/conversation/addCategory.ts", "TypeScript", 60, 0, 0, 0, 0, 0, 0, 1, 16, 77
+"/Users/waheguru-ji/Projects/Nodejs Apps/Telegram Related /Tg Bots/store shopping bots/CERTII-Games-Code-storeTGBot/src/handlers/action.ts", "TypeScript", 22, 0, 0, 0, 0, 0, 0, 1, 5, 28
+"/Users/waheguru-ji/Projects/Nodejs Apps/Telegram Related /Tg Bots/store shopping bots/CERTII-Games-Code-storeTGBot/src/handlers/actions/Category.ts", "TypeScript", 34, 0, 0, 0, 0, 0, 0, 0, 9, 43
+"/Users/waheguru-ji/Projects/Nodejs Apps/Telegram Related /Tg Bots/store shopping bots/CERTII-Games-Code-storeTGBot/src/handlers/actions/SubCategory.ts", "TypeScript", 11, 0, 0, 0, 0, 0, 0, 0, 4, 15
+"/Users/waheguru-ji/Projects/Nodejs Apps/Telegram Related /Tg Bots/store shopping bots/CERTII-Games-Code-storeTGBot/src/handlers/commands.ts", "TypeScript", 14, 0, 0, 0, 0, 0, 0, 0, 4, 18
+"/Users/waheguru-ji/Projects/Nodejs Apps/Telegram Related /Tg Bots/store shopping bots/CERTII-Games-Code-storeTGBot/src/handlers/commands/admin/addCategory.ts", "TypeScript", 6, 0, 0, 0, 0, 0, 0, 0, 2, 8
+"/Users/waheguru-ji/Projects/Nodejs Apps/Telegram Related /Tg Bots/store shopping bots/CERTII-Games-Code-storeTGBot/src/handlers/commands/admin/addSubCategory.ts", "TypeScript", 6, 0, 0, 0, 0, 0, 0, 0, 2, 8
+"/Users/waheguru-ji/Projects/Nodejs Apps/Telegram Related /Tg Bots/store shopping bots/CERTII-Games-Code-storeTGBot/src/handlers/commands/help.ts", "TypeScript", 5, 0, 0, 0, 0, 0, 0, 0, 2, 7
+"/Users/waheguru-ji/Projects/Nodejs Apps/Telegram Related /Tg Bots/store shopping bots/CERTII-Games-Code-storeTGBot/src/handlers/commands/language.ts", "TypeScript", 9, 0, 0, 0, 0, 0, 0, 0, 2, 11
+"/Users/waheguru-ji/Projects/Nodejs Apps/Telegram Related /Tg Bots/store shopping bots/CERTII-Games-Code-storeTGBot/src/handlers/commands/start.ts", "TypeScript", 9, 0, 0, 0, 0, 0, 0, 0, 2, 11
+"/Users/waheguru-ji/Projects/Nodejs Apps/Telegram Related /Tg Bots/store shopping bots/CERTII-Games-Code-storeTGBot/src/handlers/hears.ts", "TypeScript", 10, 0, 0, 0, 0, 0, 0, 0, 4, 14
+"/Users/waheguru-ji/Projects/Nodejs Apps/Telegram Related /Tg Bots/store shopping bots/CERTII-Games-Code-storeTGBot/src/handlers/hears/Rules.ts", "TypeScript", 5, 0, 0, 0, 0, 0, 0, 0, 2, 7
+"/Users/waheguru-ji/Projects/Nodejs Apps/Telegram Related /Tg Bots/store shopping bots/CERTII-Games-Code-storeTGBot/src/handlers/hears/Store.ts", "TypeScript", 26, 0, 0, 0, 0, 0, 0, 0, 8, 34
+"/Users/waheguru-ji/Projects/Nodejs Apps/Telegram Related /Tg Bots/store shopping bots/CERTII-Games-Code-storeTGBot/src/handlers/hears/Wallet.ts", "TypeScript", 26, 0, 0, 0, 0, 0, 0, 0, 4, 30
+"/Users/waheguru-ji/Projects/Nodejs Apps/Telegram Related /Tg Bots/store shopping bots/CERTII-Games-Code-storeTGBot/src/helpers/bot.ts", "TypeScript", 5, 0, 0, 0, 0, 0, 0, 0, 3, 8
+"/Users/waheguru-ji/Projects/Nodejs Apps/Telegram Related /Tg Bots/store shopping bots/CERTII-Games-Code-storeTGBot/src/helpers/constant.ts", "TypeScript", 10, 0, 0, 0, 0, 0, 0, 0, 3, 13
+"/Users/waheguru-ji/Projects/Nodejs Apps/Telegram Related /Tg Bots/store shopping bots/CERTII-Games-Code-storeTGBot/src/helpers/env.ts", "TypeScript", 9, 0, 0, 0, 0, 0, 0, 2, 4, 15
+"/Users/waheguru-ji/Projects/Nodejs Apps/Telegram Related /Tg Bots/store shopping bots/CERTII-Games-Code-storeTGBot/src/helpers/errorHanlder.ts", "TypeScript", 28, 0, 0, 0, 0, 0, 0, 0, 4, 32
+"/Users/waheguru-ji/Projects/Nodejs Apps/Telegram Related /Tg Bots/store shopping bots/CERTII-Games-Code-storeTGBot/src/helpers/i18n.ts", "TypeScript", 22, 0, 0, 0, 0, 0, 0, 0, 7, 29
+"/Users/waheguru-ji/Projects/Nodejs Apps/Telegram Related /Tg Bots/store shopping bots/CERTII-Games-Code-storeTGBot/src/helpers/launch.ts", "TypeScript", 35, 0, 0, 0, 0, 0, 0, 3, 7, 45
+"/Users/waheguru-ji/Projects/Nodejs Apps/Telegram Related /Tg Bots/store shopping bots/CERTII-Games-Code-storeTGBot/src/helpers/sendOptions.ts", "TypeScript", 7, 0, 0, 0, 0, 0, 0, 0, 2, 9
+"/Users/waheguru-ji/Projects/Nodejs Apps/Telegram Related /Tg Bots/store shopping bots/CERTII-Games-Code-storeTGBot/src/helpers/session.ts", "TypeScript", 12, 0, 0, 0, 0, 0, 0, 0, 4, 16
+"/Users/waheguru-ji/Projects/Nodejs Apps/Telegram Related /Tg Bots/store shopping bots/CERTII-Games-Code-storeTGBot/src/helpers/startMongo.ts", "TypeScript", 6, 0, 0, 0, 0, 0, 0, 0, 3, 9
+"/Users/waheguru-ji/Projects/Nodejs Apps/Telegram Related /Tg Bots/store shopping bots/CERTII-Games-Code-storeTGBot/src/menus/language.ts", "TypeScript", 33, 0, 0, 0, 0, 0, 0, 0, 11, 44
+"/Users/waheguru-ji/Projects/Nodejs Apps/Telegram Related /Tg Bots/store shopping bots/CERTII-Games-Code-storeTGBot/src/middlewares/attachUser.ts", "TypeScript", 19, 0, 0, 0, 0, 0, 0, 0, 2, 21
+"/Users/waheguru-ji/Projects/Nodejs Apps/Telegram Related /Tg Bots/store shopping bots/CERTII-Games-Code-storeTGBot/src/middlewares/configurefluent.ts", "TypeScript", 13, 0, 0, 0, 0, 0, 0, 1, 4, 18
+"/Users/waheguru-ji/Projects/Nodejs Apps/Telegram Related /Tg Bots/store shopping bots/CERTII-Games-Code-storeTGBot/src/models/Categories.ts", "TypeScript", 62, 0, 0, 0, 0, 0, 0, 5, 13, 80
+"/Users/waheguru-ji/Projects/Nodejs Apps/Telegram Related /Tg Bots/store shopping bots/CERTII-Games-Code-storeTGBot/src/models/Context.ts", "TypeScript", 13, 0, 0, 0, 0, 0, 0, 0, 3, 16
+"/Users/waheguru-ji/Projects/Nodejs Apps/Telegram Related /Tg Bots/store shopping bots/CERTII-Games-Code-storeTGBot/src/models/User.ts", "TypeScript", 46, 0, 0, 0, 0, 0, 0, 0, 11, 57
+"/Users/waheguru-ji/Projects/Nodejs Apps/Telegram Related /Tg Bots/store shopping bots/CERTII-Games-Code-storeTGBot/tsconfig.json", "JSON with Comments", 0, 15, 0, 0, 0, 0, 0, 8, 0, 23
+"Total", "-", 603, 68, 19, 16, 65, 8, 541, 215, 212, 1747
