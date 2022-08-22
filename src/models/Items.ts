@@ -34,6 +34,9 @@ export class Items {
   @prop({ required: true })
   text!: string
 
+  @prop({ required: true, default: false })
+  paid!: boolean
+
   @prop({ required: true, default: {} })
   status!: {
     sold: boolean
@@ -128,7 +131,7 @@ export const getCardNumberUsage = async (subCategoryId: string) => {
 
 //set refund true
 export const setRefund = async (id: string) => {
-  return await ItemsModel.findOneAndUpdate(
+  return await ItemsModel.updateOne(
     { id },
     {
       $set: {
@@ -139,4 +142,26 @@ export const setRefund = async (id: string) => {
     }
   )
 }
+
+export const getStatsBySubcategory = async (id: string) => {
+  const items = await ItemsModel.find({ subCategoryId: id })
+  const stats = {
+    totalSold: 0,
+    totalSouldUSD: 0,
+    totalRefunded: 0,
+    totalProfitUsd: 0,
+  }
+
+  items.map((item) => {
+    if (!item.status.sold || item.status.refunded) return
+    if (item.status.sold) {
+      stats.totalSold += 1
+      stats.totalSouldUSD += item.price
+    }
+    if (item.status.refunded) {
+      stats.totalRefunded = stats.totalRefunded + 1
+    }
+  })
+}
+
 export default ItemsModel
