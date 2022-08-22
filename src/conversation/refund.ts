@@ -76,7 +76,10 @@ refundRouter.route('refund', async (ctx: Context) => {
   const imageUrl = (await ctx.api.getFile(photo)).file_path
   if (!imageUrl) return false
 
-  const validScreenshot = await checkValidScreenshot(item.cardNumber, imageUrl)
+  const validScreenshot = await checkValidScreenshot(
+    item.cardNumber,
+    `https://api.telegram.org/file/bot${env.TOKEN}/${imageUrl}`
+  )
   // const validScreenshot = true
 
   if (!validScreenshot) {
