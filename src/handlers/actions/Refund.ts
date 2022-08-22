@@ -1,6 +1,6 @@
-import { addBalance } from '@/models/User'
 import { getItemById } from '@/models/Items'
 import Context from '@/models/Context'
+import sendOptions from '@/helpers/sendOptions'
 
 export default async function (ctx: Context) {
   const callbackData = ctx.callbackQuery?.data?.split(';')
@@ -56,4 +56,15 @@ export default async function (ctx: Context) {
       show_alert: true,
     })
   }
+
+  ctx.session.route = 'refund'
+
+  await ctx.answerCallbackQuery({
+    text: 'Send ScreenShot To Verify',
+  })
+
+  return ctx.reply(
+    `Send ScreenShot That Proof Item Not Working To Verify`,
+    sendOptions(ctx)
+  )
 }

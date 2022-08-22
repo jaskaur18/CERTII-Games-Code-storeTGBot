@@ -92,6 +92,13 @@ addItemsRouter.route('addItemsTxt', async (ctx: Context) => {
       charset: 'alphanumeric',
     })
 
+    const cardBin = Number(item.split('Card BIN : ')?.[1]?.split('\n')?.[0])
+
+    if (!cardBin) {
+      console.log('cardBin is undefined')
+      return ctx.reply(ctx.t('ItemsTxtInvalid'), sendOptions(ctx))
+    }
+
     const cardNumber = Number(
       item.split('Card Number : ')?.[1]?.split('\n')?.[0]
     )
@@ -99,6 +106,7 @@ addItemsRouter.route('addItemsTxt', async (ctx: Context) => {
       console.log('cardNumber is undefined')
       return ctx.reply(ctx.t('ItemsTxtInvalid'), sendOptions(ctx))
     }
+
     const DOBYear = item
       .split('Date of birth :  ')?.[1]
       ?.split('/')?.[2]
@@ -122,7 +130,7 @@ addItemsRouter.route('addItemsTxt', async (ctx: Context) => {
     }
 
     //const name = last 6 digit of card number and DOB.slice(6, 8) and post
-    const name = `${cardNumber.toString().slice(-6)} ${DOBYear} ${postCode}`
+    const name = `${cardBin.toString()} ${DOBYear} ${postCode}`
 
     itemsArray.push({
       id: itemId,

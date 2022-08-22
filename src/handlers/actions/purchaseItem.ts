@@ -41,7 +41,7 @@ export default async function handlepurchaseItem(ctx: Context) {
   refundInlineKeyboard.text(ctx.t('refund'), `refund;${id}`)
 
   return ctx.editMessageText(
-    `${item.text}\n\n` + `Click On Below Button To Request Refund Within 2 Min`,
+    `${item.text}\n\n` + `Click On Below Button To Request Refund Within 3 Min`,
     {
       parse_mode: 'HTML',
       reply_markup: refundInlineKeyboard,

@@ -64,7 +64,7 @@ export default async function handleSubCategory(ctx: Context) {
   currentPage = currentPage > items.length ? items.length : currentPage
 
   itemsToShow.forEach((item, index) => {
-    ItemsKeyboard.text(item.name, `item;${item.id}`).row()
+    ItemsKeyboard.text(`${item.name} - $${item.price}`, `item;${item.id}`).row()
   })
 
   //if has more items to then add next button
@@ -84,6 +84,7 @@ export default async function handleSubCategory(ctx: Context) {
   ).row()
 
   const cardsCount: {
+    name: string
     cardNumber: number
     count: number
   }[] = []
@@ -92,7 +93,7 @@ export default async function handleSubCategory(ctx: Context) {
     const cardNumber = item.cardNumber
     const index = cardsCount.findIndex((card) => card.cardNumber === cardNumber)
     if (index === -1) {
-      cardsCount.push({ cardNumber, count: 1 })
+      cardsCount.push({ name: item.name, cardNumber, count: 1 })
     } else {
       cardsCount[index].count++
     }
@@ -102,7 +103,7 @@ export default async function handleSubCategory(ctx: Context) {
     `<code>---${subcategory.name}---</code>\n` +
     `Showing ${currentPage} of ${items.length} items\n` +
     `${cardsCount
-      .map((card) => `${card.cardNumber.toString().slice(-6)} - x${card.count}`)
+      .map((card) => `${card.name.split(' ')[1]} - x${card.count}`)
       .join('\n')}`
 
   return ctx.editMessageText(message, {

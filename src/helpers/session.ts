@@ -6,6 +6,7 @@ export interface Session {
   price: number
   categoryId: string
   subCategoryId: string
+  refundAttempts: number
 }
 
 export const initial = (): Session => ({
@@ -14,6 +15,7 @@ export const initial = (): Session => ({
   price: 0,
   categoryId: '',
   subCategoryId: '',
+  refundAttempts: 0,
 })
 
 export const session = session_({ initial })

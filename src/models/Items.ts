@@ -126,4 +126,17 @@ export const getCardNumberUsage = async (subCategoryId: string) => {
   return cardsCount
 }
 
+//set refund true
+export const setRefund = async (id: string) => {
+  return await ItemsModel.findOneAndUpdate(
+    { id },
+    {
+      $set: {
+        status: {
+          refunded: true,
+        },
+      },
+    }
+  )
+}
 export default ItemsModel

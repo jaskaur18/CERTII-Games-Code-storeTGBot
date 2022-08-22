@@ -1,8 +1,10 @@
 import { Router } from '@grammyjs/router'
+import { addBalance } from '@/models/User'
 import { confirmDepositKeyboard } from '@/handlers/actions/deposit'
 import { getBtcRate } from '@/helpers/Wallet'
-import { getItemById } from '@/models/Items'
+import { getItemById, setRefund } from '@/models/Items'
 import Context from '@/models/Context'
+import checkValidScreenshot from '@/helpers/imageOcr'
 import sendOptions from '@/helpers/sendOptions'
 
 const refundRouter = new Router<Context>((ctx) => ctx.session.route)
@@ -56,12 +58,46 @@ refundRouter.route('refund', async (ctx: Context) => {
     return ctx.reply(ctx.t('RefundNotAllowed'), sendOptions(ctx))
   }
 
+  if (ctx.session.refundAttempts === 3) {
+    ctx.session.route = ''
+    return ctx.reply(
+      `Your Have Already Attempted 3 Times Now You Can't Get Refund`,
+      sendOptions(ctx)
+    )
+  }
+
   const photo = ctx.msg?.photo?.[0]?.file_id
 
   if (!photo) {
     ctx.session.route = ''
     return ctx.reply(ctx.t('NoPhoto'), sendOptions(ctx))
   }
+
+  const imageUrl = (await ctx.api.getFile(photo)).file_path
+  if (!imageUrl) return false
+
+  const validScreenshot = await checkValidScreenshot(item.cardNumber, imageUrl)
+  // const validScreenshot = true
+
+  if (!validScreenshot) {
+    ctx.session.refundAttempts = ctx.session.refundAttempts + 1
+    return ctx.reply(
+      `Cannot Verify Please Send Valid And Clear ScreenShot`,
+      sendOptions(ctx)
+    )
+  }
+
+  ctx.session.refundAttempts = 0
+
+  await setRefund(itemId)
+  await addBalance(userId, item.price)
+
+  ctx.session.route = ''
+
+  return ctx.reply(
+    `We Have Verified And Refunded The Money In Your Wallet`,
+    sendOptions(ctx)
+  )
 })
 
 refundRouter.route('customDeposit', async (ctx: Context) => {
