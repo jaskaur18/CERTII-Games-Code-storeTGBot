@@ -3,6 +3,7 @@ import { generateStoreKeyboard } from '@/handlers/hears/Store'
 import { getCategories } from '@/models/Categories'
 import Context from '@/models/Context'
 import handleAddCategory from '@/handlers/actions/addCategory'
+import handleAddSubCategory from '@/handlers/actions/addSubCategory'
 import handleCategory from '@/handlers/actions/Category'
 import handleDeposit from '@/handlers/actions/deposit'
 import handleSubCategory from '@/handlers/actions/SubCategory'
@@ -14,7 +15,7 @@ const actionHandler = new Composer<Context>()
 actionHandler.callbackQuery(/cat;(.*?);(.*?)/, handleCategory)
 actionHandler.callbackQuery(/sub;(.*?)/, handleSubCategory)
 actionHandler.callbackQuery(/addcat/, handleAddCategory)
-actionHandler.callbackQuery(/addsub/, handleAddCategory)
+actionHandler.callbackQuery(/addsub/, handleAddSubCategory)
 actionHandler.callbackQuery(/submenu;(.*?)/, handleCategory)
 actionHandler.callbackQuery(/item;(.*?)/, handlepurchaseItem)
 actionHandler.callbackQuery(/deposit;(.*?)/, handleDeposit)
