@@ -26,16 +26,13 @@ export class Items {
   price!: number
 
   @prop({ required: true })
-  DOBYear!: string
-
-  @prop({ required: true })
   postCode!: string
 
   @prop({ required: true })
   text!: string
 
-  // @prop({ required: true, default: false })
-  // paid!: boolean
+  @prop({ required: true, default: false })
+  paid!: boolean
 
   @prop({ required: true, default: {} })
   status!: {
@@ -66,6 +63,13 @@ export const getAllUnsoldItemsBySubcategory = async (subCategoryId: string) => {
     status: { purchasedOn: '', sold: false, refunded: false, purchasedBy: 0 },
   })
 }
+
+export const getAllItemsBySubcategory = async (subCategoryId: string) => {
+  return await ItemsModel.find({
+    subCategoryId,
+  })
+}
+
 // status: { sold: false, refunded: false },
 
 //get all sold items
@@ -143,24 +147,17 @@ export const setRefund = async (id: string) => {
   )
 }
 
-export const getStatsBySubcategory = async (id: string) => {
-  const items = await ItemsModel.find({ subCategoryId: id })
-  const stats = {
-    totalSold: 0,
-    totalSouldUSD: 0,
-    totalRefunded: 0,
-    totalProfitUsd: 0,
-  }
+export const setPaid = async () => {
+  const items = await ItemsModel.find({
+    status: {
+      sold: true,
+      refunded: true,
+    },
+  })
 
   items.map((item) => {
-    if (!item.status.sold || item.status.refunded) return
-    if (item.status.sold) {
-      stats.totalSold += 1
-      stats.totalSouldUSD += item.price
-    }
-    if (item.status.refunded) {
-      stats.totalRefunded = stats.totalRefunded + 1
-    }
+    item.status.refunded = true
+    return item.save()
   })
 }
 

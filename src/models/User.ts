@@ -25,7 +25,7 @@ export class User {
 
   @prop({ required: true, default: [] })
   purchases!: {
-    id: number
+    id: string
     itemName: string
     itemPrice: number
     refund: boolean
@@ -77,6 +77,41 @@ export function addBalance(id: number, balance: number) {
 //reduce balance
 export function reduceBalance(id: number, balance: number) {
   return UserModel.findOneAndUpdate({ id }, { $inc: { balance: -balance } })
+}
+
+//add purchases to purchases array
+export function addPurchases(
+  id: number,
+  purchases: {
+    id: number
+    itemName: string
+    itemPrice: number
+    refund: boolean
+  }
+) {
+  return UserModel.findOneAndUpdate(
+    { id },
+    { $push: { purchases } },
+    {
+      new: true,
+      upsert: true,
+    }
+  )
+}
+
+//set refund to true  in purchase array
+export async function setRefundPurchases(id: number, itemId: string) {
+  const user = await UserModel.findOne({
+    id,
+  })
+  if (user) {
+    const purchases = user.purchases.filter(
+      (purchaser) => purchaser.id === itemId
+    )
+    purchases[0].refund = true
+    user.markModified('purchases')
+    return user.save()
+  }
 }
 
 //regenrate wallet address

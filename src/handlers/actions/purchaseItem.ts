@@ -1,10 +1,10 @@
 import { InlineKeyboard } from 'grammy'
+import { addPurchases, reduceBalance } from '@/models/User'
 import {
   getCardNumberUsage,
   getItemById,
   setStatusToSold,
 } from '@/models/Items'
-import { reduceBalance } from '@/models/User'
 import Context from '@/models/Context'
 
 export default async function handlepurchaseItem(ctx: Context) {
@@ -37,11 +37,19 @@ export default async function handlepurchaseItem(ctx: Context) {
 
   await reduceBalance(ctx.from?.id || 0, item.price)
 
+  await addPurchases(ctx.from?.id || 0, {
+    id: ctx.from?.id || 0,
+    itemName: item.name,
+    itemPrice: item.price,
+    refund: false,
+  })
+
   const refundInlineKeyboard = new InlineKeyboard()
   refundInlineKeyboard.text(ctx.t('refund'), `refund;${id}`)
 
   return ctx.editMessageText(
-    `${item.text}\n\n` + `Click On Below Button To Request Refund Within 3 Min`,
+    `${item.text}\n\n` +
+      `You have only 2 chances for submitting a refund approval, if no refund request will be submitted within this amount of time, you'll not be eligible for a refund on that product anymore.`,
     {
       parse_mode: 'HTML',
       reply_markup: refundInlineKeyboard,

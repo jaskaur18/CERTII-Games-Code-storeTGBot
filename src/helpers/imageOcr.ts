@@ -37,7 +37,7 @@ const checkValidScreenshot = async (cardNumber: number, imageUrl: string) => {
     if (!text) return false
 
     if (
-      (wordInString(text, 'decline') || wordInString(text, 'declined')) &&
+      wordInString(text, 'declined') &&
       wordInString(text, `${cardNumber}`.replace(/\s/g, ''))
     ) {
       return true

@@ -75,7 +75,7 @@ addItemsRouter.route('addItemsTxt', async (ctx: Context) => {
   const imageContainNumberText: string = imageContainNumber.data.toString()
 
   const imageContainNumberTextArray =
-    imageContainNumberText.split('----- M10  ----')
+    imageContainNumberText.split('---START---')
 
   //remove empty and \r\n array element
   const imageContainNumberTextArrayWithoutEmpty =
@@ -92,7 +92,7 @@ addItemsRouter.route('addItemsTxt', async (ctx: Context) => {
       charset: 'alphanumeric',
     })
 
-    const cardBin = Number(item.split('Card BIN : ')?.[1]?.split('\n')?.[0])
+    const cardBin = Number(item.split('card_bin : ')?.[1]?.split('\n')?.[0])
 
     if (!cardBin) {
       console.log('cardBin is undefined')
@@ -100,26 +100,29 @@ addItemsRouter.route('addItemsTxt', async (ctx: Context) => {
     }
 
     const cardNumber = Number(
-      item.split('Card Number : ')?.[1]?.split('\n')?.[0]
+      item.split('card_number : ')?.[1]?.split('\n')?.[0]
     )
+
     if (!cardNumber) {
       console.log('cardNumber is undefined')
       return ctx.reply(ctx.t('ItemsTxtInvalid'), sendOptions(ctx))
     }
 
-    const DOBYear = item
-      .split('Date of birth :  ')?.[1]
-      ?.split('/')?.[2]
-      ?.split('\n')?.[0]
-      ?.replace('\r', '')
+    //get current date format MM/DD/YY
+    const date = new Date()
 
-    if (!DOBYear) {
-      console.log('DOBYear is undefined')
-      return ctx.reply(ctx.t('ItemsTxtInvalid'), sendOptions(ctx))
-    }
+    const formatDate =
+      date.getMonth() > 8
+        ? date.getMonth() + 1
+        : '0' +
+          (date.getMonth() + 1) +
+          '/' +
+          (date.getDate() > 9 ? date.getDate() : '0' + date.getDate()) +
+          '/' +
+          date.getFullYear().toString().slice(2, 4)
+
     const postCode = item
-      .split('Address :  ')?.[1]
-      ?.split(',')?.[2]
+      .split('zip_code :  ')?.[1]
       ?.split('\n')?.[0]
       ?.replace('\r', '')
       ?.replace(/\s/g, '')
@@ -130,7 +133,7 @@ addItemsRouter.route('addItemsTxt', async (ctx: Context) => {
     }
 
     //const name = last 6 digit of card number and DOB.slice(6, 8) and post
-    const name = `${cardBin.toString()} ${DOBYear} ${postCode}`
+    const name = `${cardBin.toString()} ${formatDate} ${postCode}`
 
     itemsArray.push({
       id: itemId,
@@ -139,9 +142,10 @@ addItemsRouter.route('addItemsTxt', async (ctx: Context) => {
       name: name,
       price: ctx.session.price,
       cardNumber,
-      DOBYear,
+
       postCode,
       text: item,
+      paid: false,
       status: {
         purchasedOn: '',
         sold: false,
@@ -165,3 +169,43 @@ addItemsRouter.route('addItemsTxt', async (ctx: Context) => {
 })
 
 export default addItemsRouter
+
+// const cardBin = Number(item.split('Card BIN : ')?.[1]?.split('\n')?.[0])
+
+// if (!cardBin) {
+//   console.log('cardBin is undefined')
+//   return ctx.reply(ctx.t('ItemsTxtInvalid'), sendOptions(ctx))
+// }
+
+// const cardNumber = Number(
+//   item.split('Card Number : ')?.[1]?.split('\n')?.[0]
+// )
+// if (!cardNumber) {
+//   console.log('cardNumber is undefined')
+//   return ctx.reply(ctx.t('ItemsTxtInvalid'), sendOptions(ctx))
+// }
+
+// const DOBYear = item
+//   .split('Date of birth :  ')?.[1]
+//   ?.split('/')?.[2]
+//   ?.split('\n')?.[0]
+//   ?.replace('\r', '')
+
+// if (!DOBYear) {
+//   console.log('DOBYear is undefined')
+//   return ctx.reply(ctx.t('ItemsTxtInvalid'), sendOptions(ctx))
+// }
+// const postCode = item
+//   .split('Address :  ')?.[1]
+//   ?.split(',')?.[2]
+//   ?.split('\n')?.[0]
+//   ?.replace('\r', '')
+//   ?.replace(/\s/g, '')
+
+// if (!postCode) {
+//   console.log('postCode is undefined')
+//   return ctx.reply(ctx.t('ItemsTxtInvalid'), sendOptions(ctx))
+// }
+
+// //const name = last 6 digit of card number and DOB.slice(6, 8) and post
+// const name = `${cardBin.toString()} ${DOBYear} ${postCode}`

@@ -1,5 +1,5 @@
 import { Router } from '@grammyjs/router'
-import { addBalance } from '@/models/User'
+import { addBalance, setRefundPurchases } from '@/models/User'
 import { confirmDepositKeyboard } from '@/handlers/actions/deposit'
 import { getBtcRate } from '@/helpers/Wallet'
 import { getItemById, setRefund } from '@/models/Items'
@@ -96,6 +96,8 @@ refundRouter.route('askrefund', async (ctx: Context) => {
 
   await setRefund(itemId)
   await addBalance(userId, item.price)
+
+  await setRefundPurchases(ctx.from.id || 0, itemId)
 
   ctx.session.route = ''
 
