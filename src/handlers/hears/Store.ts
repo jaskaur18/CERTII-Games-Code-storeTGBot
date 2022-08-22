@@ -30,7 +30,7 @@ export default async function handleStore(ctx: Context) {
   const categoriesKeyboard = generateStoreKeyboard(categories, isAdmin)
 
   if (categories.length === 0)
-    return categoriesKeyboard.text(ctx.t('noCategoryAvailable'))
+    categoriesKeyboard.text(ctx.t('noCategoryAvailable'))
 
   return ctx.reply(ctx.t('MainMenu'), {
     ...sendOptions(ctx),
