@@ -34,8 +34,8 @@ export class Items {
   @prop({ required: true })
   text!: string
 
-  @prop({ required: true, default: false })
-  paid!: boolean
+  // @prop({ required: true, default: false })
+  // paid!: boolean
 
   @prop({ required: true, default: {} })
   status!: {
