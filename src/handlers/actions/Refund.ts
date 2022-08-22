@@ -2,7 +2,7 @@ import { getItemById } from '@/models/Items'
 import Context from '@/models/Context'
 import sendOptions from '@/helpers/sendOptions'
 
-export default async function (ctx: Context) {
+export default async function handleRefund(ctx: Context) {
   const callbackData = ctx.callbackQuery?.data?.split(';')
 
   const itemId = callbackData?.[1]
@@ -50,14 +50,16 @@ export default async function (ctx: Context) {
   //if itemTime is less than 3 min ago, don't allow refund
   const timeDiff = new Date().getTime() - new Date(itemTime).getTime()
   const timeDiffInMin = timeDiff / 1000 / 60
-  if (timeDiffInMin < 3) {
+  if (timeDiffInMin > 3) {
     return ctx.answerCallbackQuery({
       text: ctx.t('RefundNotAllowed'),
       show_alert: true,
     })
   }
 
-  ctx.session.route = 'refund'
+  ctx.session.itemId = itemId
+
+  ctx.session.route = 'askrefund'
 
   await ctx.answerCallbackQuery({
     text: 'Send ScreenShot To Verify',

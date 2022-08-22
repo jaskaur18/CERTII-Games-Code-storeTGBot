@@ -24,6 +24,8 @@ export const imageOcr = async (filePath: string) => {
     return false
   }
 }
+const wordInString = (s: string, word: string) =>
+  new RegExp('\\b' + word + '\\b', 'i').test(s)
 
 //Get Text From Image And Check If It Is A Phone Number tesseract.js
 const checkValidScreenshot = async (cardNumber: number, imageUrl: string) => {
@@ -35,11 +37,17 @@ const checkValidScreenshot = async (cardNumber: number, imageUrl: string) => {
     if (!text) return false
 
     if (
-      (text.includes('decline') || text.includes('declined')) &&
-      text.includes(`${cardNumber}`.replace(/\s/g, ''))
+      (wordInString(text, 'decline') || wordInString(text, 'declined')) &&
+      wordInString(text, `${cardNumber}`.replace(/\s/g, ''))
     ) {
       return true
     }
+    // if (
+    //   (text.includes('decline') || text.includes('declined')) &&
+    //   text.includes(`${cardNumber}`.replace(/\s/g, ''))
+    // ) {
+    //   return true
+    // }
 
     // //if text contain phone number
     // if (
@@ -47,7 +55,6 @@ const checkValidScreenshot = async (cardNumber: number, imageUrl: string) => {
     //     /(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?/gim
     //   )
     // )
-    return true
     return false
   } catch (err) {
     console.log(err)

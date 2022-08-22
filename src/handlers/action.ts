@@ -6,6 +6,7 @@ import handleAddCategory from '@/handlers/actions/addCategory'
 import handleAddSubCategory from '@/handlers/actions/addSubCategory'
 import handleCategory from '@/handlers/actions/Category'
 import handleDeposit from '@/handlers/actions/deposit'
+import handleRefund from '@/handlers/actions/Refund'
 import handleSubCategory from '@/handlers/actions/SubCategory'
 import handlepurchaseItem from '@/handlers/actions/purchaseItem'
 import sendOptions from '@/helpers/sendOptions'
@@ -19,6 +20,7 @@ actionHandler.callbackQuery(/addsub/, handleAddSubCategory)
 actionHandler.callbackQuery(/submenu;(.*?)/, handleCategory)
 actionHandler.callbackQuery(/item;(.*?)/, handlepurchaseItem)
 actionHandler.callbackQuery(/deposit;(.*?)/, handleDeposit)
+actionHandler.callbackQuery(/refund;(.*?)/, handleRefund)
 
 ////////////////////////////////////////////////////////////////////////////////
 actionHandler.callbackQuery('menu', async (ctx: Context) => {

@@ -5,11 +5,12 @@ import { getBtcRate } from '@/helpers/Wallet'
 import { getItemById, setRefund } from '@/models/Items'
 import Context from '@/models/Context'
 import checkValidScreenshot from '@/helpers/imageOcr'
+import env from '@/helpers/env'
 import sendOptions from '@/helpers/sendOptions'
 
 const refundRouter = new Router<Context>((ctx) => ctx.session.route)
 
-refundRouter.route('refund', async (ctx: Context) => {
+refundRouter.route('askrefund', async (ctx: Context) => {
   if (ctx.msg?.text === '/cancel') {
     ctx.session.route = ''
     return ctx.reply(ctx.t('Cancelled'), sendOptions(ctx))
@@ -53,7 +54,7 @@ refundRouter.route('refund', async (ctx: Context) => {
   //if itemTime is less than 3 min ago, don't allow refund
   const timeDiff = new Date().getTime() - new Date(itemTime).getTime()
   const timeDiffInMin = timeDiff / 1000 / 60
-  if (timeDiffInMin < 3) {
+  if (timeDiffInMin > 3) {
     ctx.session.route = ''
     return ctx.reply(ctx.t('RefundNotAllowed'), sendOptions(ctx))
   }
@@ -66,10 +67,12 @@ refundRouter.route('refund', async (ctx: Context) => {
     )
   }
 
-  const photo = ctx.msg?.photo?.[0]?.file_id
+  ctx.session.refundAttempts = ctx.session.refundAttempts + 1
+
+  const photo = ctx.msg?.photo?.[ctx.msg?.photo?.length - 1]?.file_id
 
   if (!photo) {
-    ctx.session.route = ''
+    // ctx.session.route = ''
     return ctx.reply(ctx.t('NoPhoto'), sendOptions(ctx))
   }
 
@@ -83,7 +86,6 @@ refundRouter.route('refund', async (ctx: Context) => {
   // const validScreenshot = true
 
   if (!validScreenshot) {
-    ctx.session.refundAttempts = ctx.session.refundAttempts + 1
     return ctx.reply(
       `Cannot Verify Please Send Valid And Clear ScreenShot`,
       sendOptions(ctx)
