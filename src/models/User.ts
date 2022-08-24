@@ -83,7 +83,7 @@ export function reduceBalance(id: number, balance: number) {
 export function addPurchases(
   id: number,
   purchases: {
-    id: number
+    id: string
     itemName: string
     itemPrice: number
     refund: boolean
@@ -108,6 +108,9 @@ export async function setRefundPurchases(id: number, itemId: string) {
     const purchases = user.purchases.filter(
       (purchaser) => purchaser.id === itemId
     )
+    if (purchases.length === 0) {
+      return
+    }
     purchases[0].refund = true
     user.markModified('purchases')
     return user.save()

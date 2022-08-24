@@ -38,7 +38,7 @@ export default async function handlepurchaseItem(ctx: Context) {
   await reduceBalance(ctx.from?.id || 0, item.price)
 
   await addPurchases(ctx.from?.id || 0, {
-    id: ctx.from?.id || 0,
+    id,
     itemName: item.name,
     itemPrice: item.price,
     refund: false,
