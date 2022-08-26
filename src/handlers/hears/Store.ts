@@ -17,6 +17,9 @@ export function generateStoreKeyboard(
         .row()
     })
     .reverse()
+
+  categoriesKeyboard.text('Search By Bin', 'sub;search').row()
+
   if (isAdmin) categoriesKeyboard.text('Add new category', 'addcat').row()
 
   return categoriesKeyboard

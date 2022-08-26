@@ -30,8 +30,6 @@ export default async function handleCategory(ctx: Context) {
     subCategoriesMenu.text(`🔸 ${name}`, `sub;${id}`).row()
   })
 
-  subCategoriesMenu.text('Search By Bin', 'sub;search').row()
-
   if (IsAdmin) subCategoriesMenu.text('Add new subcategory', 'addsub').row()
   subCategoriesMenu.text('🌎 Main Menu', 'menu')
 

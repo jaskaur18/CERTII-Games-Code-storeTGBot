@@ -110,7 +110,7 @@ export default async function handleSubCategory(ctx: Context) {
     `<code>---${subcategory.name}---</code>\n` +
     `Showing ${currentPage} of ${items.length} items\n` +
     `${cardsCount
-      .map((card) => `${card.name.split(' ')[1]} - x${card.count}`)
+      .map((card) => `${card.name.split(' ')[0]} - x${card.count}`)
       .join('\n')}`
 
   return ctx.editMessageText(message, {

@@ -98,6 +98,7 @@ searchBin.route('searchBin', async (ctx: Context) => {
         console.log('Cant Send Message To Admin')
       })
   })
+  ctx.session.route = ''
 
   return ctx.reply(
     "We'll get back to you soon with your desired BIN",
