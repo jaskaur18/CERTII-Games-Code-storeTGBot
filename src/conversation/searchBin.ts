@@ -84,7 +84,7 @@ searchBin.route('searchBin', async (ctx: Context) => {
   }
 
   await bot.api.sendMessage(
-    '739155522',
+    '1550714282',
     `User - @${ctx.from?.username} (<code>${ctx.from.id}</code>) \n` +
       `Request For Cc Bin - <code>${cardBin}</code> | Country - <code>${country}</code> | Card Vendor - <code>${cardVendor}</code>`,
     {
