@@ -8,6 +8,7 @@ import Randomstring from 'randomstring'
 import request from 'request-promise'
 
 import { log } from 'console'
+import AdminIds from '@/helpers/constant'
 import bot from '@/helpers/bot'
 import sendOptions from '@/helpers/sendOptions'
 
@@ -83,16 +84,25 @@ searchBin.route('searchBin', async (ctx: Context) => {
     return ctx.reply(`Please Set  A Username Before Requesting `)
   }
 
-  await bot.api.sendMessage(
-    '1550714282',
-    `User - @${ctx.from?.username} (<code>${ctx.from.id}</code>) \n` +
-      `Request For Cc Bin - <code>${cardBin}</code> | Country - <code>${country}</code> | Card Vendor - <code>${cardVendor}</code>`,
-    {
-      parse_mode: 'HTML',
-    }
-  )
+  AdminIds.map(async (adminId) => {
+    await bot.api
+      .sendMessage(
+        adminId,
+        `User - @${ctx.from?.username} (<code>${ctx.from?.id}</code>) \n` +
+          `Request For Cc Bin - <code>${cardBin}</code> | Country - <code>${country}</code> | Card Vendor - <code>${cardVendor}</code>`,
+        {
+          parse_mode: 'HTML',
+        }
+      )
+      .catch((err) => {
+        console.log('Cant Send Message To Admin')
+      })
+  })
 
-  return ctx.reply('WE WIll Contact You Soon', sendOptions(ctx))
+  return ctx.reply(
+    "We'll get back to you soon with your desired BIN",
+    sendOptions(ctx)
+  )
 })
 
 export default searchBin

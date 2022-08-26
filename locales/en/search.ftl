@@ -1,4 +1,4 @@
 
 
-enterBin = Enter Bin To Search In Database Fomrat - 123456
-invalidCardBin = Invalid Card Bin ex- 123456
+enterBin = Type your desired BIN, and we'll get back to you soon
+invalidCardBin = Provided Bin Doesn't Exist
