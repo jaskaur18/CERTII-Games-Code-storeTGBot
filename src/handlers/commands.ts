@@ -8,7 +8,7 @@ import handleaddItems from '@/handlers/commands/admin/addItems'
 const CommandsHanlder = new Composer<Context>()
 
 CommandsHanlder.command('start', handleStart)
-CommandsHanlder.command('help', handleHelp)
+CommandsHanlder.command('cc', handleHelp)
 CommandsHanlder.command('language', handleLanguage)
 CommandsHanlder.command('additem', handleaddItems)
 

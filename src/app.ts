@@ -20,6 +20,7 @@ import configurefluent from '@/middlewares/configurefluent'
 import env from '@/helpers/env'
 import languageMenu from '@/menus/language'
 import refundRouter from '@/conversation/refund'
+import searchBin from '@/conversation/searchBin'
 import startMongo from '@/helpers/startMongo'
 
 async function runApp() {
@@ -44,7 +45,7 @@ async function runApp() {
     .use(languageMenu)
     .use(addCategory) // register the router
     .use(addItemsRouter) // register the router
-    .use(refundRouter)
+    .use(refundRouter, searchBin)
 
     // Commands
     .use(CommandsHanlder)

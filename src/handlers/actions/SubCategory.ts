@@ -18,6 +18,13 @@ export default async function handleSubCategory(ctx: Context) {
       show_alert: true,
     })
 
+  if (id === 'search') {
+    ctx.session.route = 'searchBin'
+    return ctx.editMessageText(ctx.t('enterBin'), {
+      reply_markup: undefined,
+    })
+  }
+
   const subcategory = await getSubCategoryById(id)
   if (!subcategory)
     return ctx.answerCallbackQuery({
