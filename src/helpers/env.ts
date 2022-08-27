@@ -13,4 +13,6 @@ export default cleanEnv(process.env, {
   RAILWAY_STATIC_URL: str(),
 
   APIRONE_WALLET_ID: str(),
+  COINPAYMENTAPI_KEY: str(),
+  COINPAYMENTAPI_SECRET: str(),
 })

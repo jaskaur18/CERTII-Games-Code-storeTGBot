@@ -1,10 +1,6 @@
 import { InlineKeyboard } from 'grammy'
 import { addPurchases, reduceBalance } from '@/models/User'
-import {
-  getCardNumberUsage,
-  getItemById,
-  setStatusToSold,
-} from '@/models/Items'
+import { getItemById, setStatusToSold } from '@/models/Items'
 import Context from '@/models/Context'
 
 export default async function handlepurchaseItem(ctx: Context) {

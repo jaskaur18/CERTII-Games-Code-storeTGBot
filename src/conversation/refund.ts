@@ -3,7 +3,9 @@ import { addBalance, setRefundPurchases } from '@/models/User'
 import { confirmDepositKeyboard } from '@/handlers/actions/deposit'
 import { getBtcRate } from '@/helpers/Wallet'
 import { getItemById, setRefund } from '@/models/Items'
+import AdminIds from '@/helpers/constant'
 import Context from '@/models/Context'
+import bot from '@/helpers/bot'
 import checkValidScreenshot from '@/helpers/imageOcr'
 import env from '@/helpers/env'
 import sendOptions from '@/helpers/sendOptions'
@@ -79,32 +81,49 @@ refundRouter.route('askrefund', async (ctx: Context) => {
   const imageUrl = (await ctx.api.getFile(photo)).file_path
   if (!imageUrl) return false
 
-  const validScreenshot = await checkValidScreenshot(
-    item.cardNumber,
-    `https://api.telegram.org/file/bot${env.TOKEN}/${imageUrl}`
-  )
-  // const validScreenshot = true
-
-  if (!validScreenshot) {
-    return ctx.reply(
-      `Cannot Verify Please Send Valid And Clear ScreenShot`,
-      sendOptions(ctx)
-    )
-  }
-
-  ctx.session.refundAttempts = 0
-
-  await setRefund(itemId)
-  await addBalance(userId, item.price)
-
-  await setRefundPurchases(ctx.from.id || 0, itemId)
+  AdminIds.map((adminId) => {
+    return bot.api.sendPhoto(adminId, photo, {
+      caption:
+        `User - <a href="tg://user?id=${ctx.from?.id}">${ctx.from?.first_name} ${ctx.from?.last_name}</a> (@${ctx.from?.username})}\n\n` +
+        `Requeted For Refun Of Item - <code>${itemId}</code>\n` +
+        `Item Price - ${item.price}`,
+      parse_mode: 'HTML',
+    })
+  })
 
   ctx.session.route = ''
 
   return ctx.reply(
-    `We Have Verified And Refunded The Money In Your Wallet`,
+    `Refund Request Has Been Forwarded To Admin For Manual Verifcation`,
     sendOptions(ctx)
   )
+
+  // const validScreenshot = await checkValidScreenshot(
+  //   Number(item.name.split(' ')[0]),
+  //   `https://api.telegram.org/file/bot${env.TOKEN}/${imageUrl}`
+  // )
+  // // const validScreenshot = true
+
+  // if (!validScreenshot) {
+  //   return ctx.reply(
+  //     `Cannot Verify Please Send Valid And Clear ScreenShot`,
+  //     sendOptions(ctx)
+  //   )
+  // }
+
+  // ctx.session.refundAttempts = 0
+
+  // await setRefund(itemId)
+  // await addBalance(userId, item.price)
+
+  // await setRefundPurchases(ctx.from.id || 0, itemId)
+
+  // ctx.session.route = ''
+
+  // return ctx.reply(
+  //   `We Have Verified And Refunded The Money In Your Wallet`,
+  //   sendOptions(ctx)
+  // )
 })
 
 refundRouter.route('customDeposit', async (ctx: Context) => {

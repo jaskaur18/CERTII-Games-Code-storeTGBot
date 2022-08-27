@@ -1,8 +1,5 @@
 import { InlineKeyboard } from 'grammy'
-import {
-  getAllUnsoldItemsBySubcategory,
-  getCardNumberUsage,
-} from '@/models/Items'
+import { getAllUnsoldItemsBySubcategory } from '@/models/Items'
 import { getCategoryById, getSubCategoryById } from '@/models/Categories'
 import Context from '@/models/Context'
 import sendOptions from '@/helpers/sendOptions'
@@ -97,7 +94,7 @@ export default async function handleSubCategory(ctx: Context) {
   }[] = []
 
   itemsToShow.map((item) => {
-    const cardNumber = item.cardNumber
+    const cardNumber = Number(item.name.split(' ')[0])
     const index = cardsCount.findIndex((card) => card.cardNumber === cardNumber)
     if (index === -1) {
       cardsCount.push({ name: item.name, cardNumber, count: 1 })

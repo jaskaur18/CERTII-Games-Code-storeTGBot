@@ -2,6 +2,7 @@ import { session as session_ } from 'grammy'
 
 export interface Session {
   route: string
+  name: string
   itemId: string
   price: number
   categoryId: string
@@ -11,6 +12,7 @@ export interface Session {
 
 export const initial = (): Session => ({
   route: '',
+  name: '',
   itemId: '',
   price: 0,
   categoryId: '',

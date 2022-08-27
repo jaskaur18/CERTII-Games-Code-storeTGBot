@@ -20,13 +20,7 @@ export class Items {
   CategoryId!: string
 
   @prop({ required: true })
-  cardNumber!: number
-
-  @prop({ required: true })
   price!: number
-
-  @prop({ required: true })
-  postCode!: string
 
   @prop({ required: true })
   text!: string
@@ -110,28 +104,28 @@ export const setStatusToRefunded = async (id: string) => {
 }
 
 //get frequency of same card number used in all items
-export const getCardNumberUsage = async (subCategoryId: string) => {
-  const _items = await ItemsModel.find({
-    subCategoryId,
-    status: { purchasedOn: '', sold: false, refunded: false, purchasedBy: 0 },
-  })
+// export const getCardNumberUsage = async (subCategoryId: string) => {
+//   const _items = await ItemsModel.find({
+//     subCategoryId,
+//     status: { purchasedOn: '', sold: false, refunded: false, purchasedBy: 0 },
+//   })
 
-  const cardsCount: {
-    cardNumber: number
-    count: number
-  }[] = []
+//   const cardsCount: {
+//     cardNumber: number
+//     count: number
+//   }[] = []
 
-  _items.forEach((item) => {
-    const cardNumber = item.cardNumber
-    const index = cardsCount.findIndex((card) => card.cardNumber === cardNumber)
-    if (index === -1) {
-      cardsCount.push({ cardNumber, count: 1 })
-    } else {
-      cardsCount[index].count++
-    }
-  })
-  return cardsCount
-}
+//   _items.forEach((item) => {
+//     const cardNumber = item.cardNumber
+//     const index = cardsCount.findIndex((card) => card.cardNumber === cardNumber)
+//     if (index === -1) {
+//       cardsCount.push({ cardNumber, count: 1 })
+//     } else {
+//       cardsCount[index].count++
+//     }
+//   })
+//   return cardsCount
+// }
 
 //set refund true
 export const setRefund = async (id: string) => {
