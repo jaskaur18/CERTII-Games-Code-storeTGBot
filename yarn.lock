@@ -839,11 +839,6 @@ clone@^1.0.2:
   resolved "https://registry.yarnpkg.com/clone/-/clone-1.0.4.tgz#da309cc263df15994c688ca902179ca3c7cd7c7e"
   integrity sha512-JQHZ2QMW6l3aH/j6xCqQThY/9OH4D/9ls34cgkUBiEeocRTU04tHfKPBsUK1PqZCUQM7GiA0IIXJSuXHI64Kbg==
 
-coinpayments@^2.2.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/coinpayments/-/coinpayments-2.2.0.tgz#268aba8231c16911350e098e2178fa0e307d4099"
-  integrity sha512-TJ8nAW1nPTBHBmYy4w78k9iH4gVgksdv1aiS/Oq3IsYiZAGn9QgyC+RcXZfjJrjDL9HZwc7kgyc3Gi3DMUiljw==
-
 color-convert@^2.0.1:
   version "2.0.1"
   resolved "https://registry.npmjs.org/color-convert/-/color-convert-2.0.1.tgz"
